@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
+
+import PokeNavbar from "./components/pokeNavbar/pokeNavbar";
+import PokeTable from "./components/pokeTable/pokeTable";
 
 function App() {
+  const location = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <PokeNavbar></PokeNavbar>
+      <Routes>
+        <Route path="/pokedex" element={<PokeTable></PokeTable>} />
+      </Routes>
+      {location.pathname === "/" ? <Navigate to="/pokedex" /> : null}
     </div>
   );
 }
